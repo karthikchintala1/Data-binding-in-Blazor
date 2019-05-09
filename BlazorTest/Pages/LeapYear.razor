@@ -1,0 +1,31 @@
+﻿<div style="border: 2px dashed gray;">
+    <h2>Leap Year checker</h2> <hr />
+    <h3>Year: @Year</h3>
+    <h3>@IsLeap</h3>
+</div>
+
+@functions{
+    [Parameter]
+    private int Year { get; set; }
+    private string IsLeap
+    {
+        get
+        {
+            if (((Year % 4 == 0) && (Year % 100 != 0)) || (Year % 400 == 0))
+            {
+                return Year + " is a leap year";
+            }
+            else
+            {
+                return Year + " is not a leap year";
+            }
+        }
+        set
+        {
+
+        }
+    }
+
+    [Parameter]
+    private EventCallback<int> YearChanged { get; set; }
+}

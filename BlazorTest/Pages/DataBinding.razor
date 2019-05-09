@@ -1,0 +1,39 @@
+﻿@page "/databinding"
+
+<h2>Data Binding in Blazor</h2>
+
+<h3>One-way data binding</h3>
+color is : <label>@color</label>
+<div style="background-color: @color; padding: 50px;"></div>
+<br />
+<button class="btn btn-dark" onclick="@ToggleBackGround">Toggle background color</button>
+<hr />
+<h3>Two-way data binding</h3>
+<label>Hello @labelText !!</label><br />
+<input class="input-group-text" bind-value-oninput="@labelText" />
+<hr />
+<h3>Component parameters</h3>
+<p>Year: @Year</p>
+<br />
+<button class="btn btn-outline-primary" onclick="@IncrementYear">Increment Year</button>
+<hr />
+<LeapYear bind-Year="@Year" />
+
+@functions{
+    private string color = "red";
+    private string labelText = "Karthik";
+
+    [Parameter]
+    private int Year { get; set; } = 2000;
+
+    private void ToggleBackGround(UIMouseEventArgs eventArgs)
+    {
+        color = color == "red" ? "green" : "red";
+    }
+
+    private void IncrementYear()
+    {
+        Year++;
+    }
+}
+
